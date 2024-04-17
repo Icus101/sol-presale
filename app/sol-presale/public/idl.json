@@ -1,0 +1,80 @@
+{
+  "version": "0.1.0",
+  "name": "sol_presale",
+  "instructions": [
+    {
+      "name": "initialize",
+      "accounts": [
+        { "name": "presale", "isMut": true, "isSigner": false },
+        { "name": "admin", "isMut": true, "isSigner": true },
+        { "name": "systemProgram", "isMut": false, "isSigner": false },
+        { "name": "rent", "isMut": false, "isSigner": false }
+      ],
+      "args": []
+    },
+    {
+      "name": "deposit",
+      "accounts": [
+        { "name": "presale", "isMut": true, "isSigner": false },
+        { "name": "sender", "isMut": true, "isSigner": true },
+        { "name": "admin", "isMut": true, "isSigner": false },
+        { "name": "systemProgram", "isMut": false, "isSigner": false }
+      ],
+      "args": [{ "name": "amountSolLamports", "type": "u64" }]
+    },
+    {
+      "name": "withdrawSol",
+      "accounts": [
+        { "name": "presale", "isMut": true, "isSigner": false },
+        { "name": "admin", "isMut": true, "isSigner": true }
+      ],
+      "args": []
+    }
+  ],
+  "accounts": [
+    {
+      "name": "Presale",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          { "name": "initialized", "type": "bool" },
+          { "name": "amountRaised", "type": "u64" },
+          { "name": "presaleActive", "type": "bool" },
+          { "name": "admin", "type": "publicKey" }
+        ]
+      }
+    }
+  ],
+  "errors": [
+    {
+      "code": 6000,
+      "name": "AccountAlreadyInitialized",
+      "msg": "Account already initialized"
+    },
+    {
+      "code": 6001,
+      "name": "MissingRequiredSignature",
+      "msg": "Missing required Signature"
+    },
+    { "code": 6002, "name": "InvalidArgument", "msg": "Argument is invalid" },
+    { "code": 6003, "name": "InsufficientFunds", "msg": "Insufficient Funds" },
+    {
+      "code": 6004,
+      "name": "InvalidAccountData",
+      "msg": "Invalid account Data"
+    },
+    {
+      "code": 6005,
+      "name": "CantCompleteTransfer",
+      "msg": "Cant complete transfer"
+    },
+    {
+      "code": 6006,
+      "name": "InvalidTokenAmount",
+      "msg": "Invalid token amount"
+    },
+    { "code": 6007, "name": "Overflow", "msg": "Amount overflow" },
+    { "code": 6008, "name": "UnderFlow", "msg": "Amount underflow" },
+    { "code": 6009, "name": "DivisionError", "msg": "Not Divisable" }
+  ]
+}
